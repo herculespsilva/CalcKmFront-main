@@ -36,16 +36,15 @@ export default {
       'setSenha'
     ]),
     login(){
-      axios.post('login',
-      { username: this.nome, password: this.senha} )
+      axios.get('trabalho',
+      { params: { id: 1 }, headers: { Accept: 'application/json'}, auth: { username: this.nome, password: this.senha} })
       .then(res => {
         console.log(res);
-        localStorage.setItem('token',res.data.token);
         this.sucesso();
       })
       .catch(error => {
         console.log(error);
-        if (error.response.status === 401 || error.response.status === 403) {
+        if (error.response.status === 401) {
           console.log('Usuário ou senha inválidos');
         }
         else {
@@ -56,7 +55,7 @@ export default {
     sucesso() {
       this.setUsuario(this.nome);
       this.setSenha(this.senha);
-      this.$router.push('/trabalho');
+      this.$router.push('/formulario');
     }
   }
 }

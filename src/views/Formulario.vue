@@ -9,10 +9,10 @@
                 v-model="modelo">
             </p>
             <p>
-                <label for="valor">Valor R$: </label>
-                <input type="text" id="valor" 
+                <label for="valor_automovel">Valor R$: </label>
+                <input type="text" id="valor_automovel" 
                 required 
-                v-model="valor">
+                v-model="valor_automovel">
             </p>
             <p>
                 <label for="depreciacao">Depreciacao: </label>
@@ -28,7 +28,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
@@ -37,9 +36,8 @@
 
             <tbody>
                 <tr v-for="form in formularios" :key="form.id">
-                    <td>{{ form.id }}</td>
                     <td>{{ form.modelo }}</td>
-                    <td>{{ form.valor }}</td>
+                    <td>{{ form.valor_automovel }}</td>
                     <td>{{ form.depreciacao }}</td>
                 </tr>
             </tbody>
@@ -57,7 +55,7 @@ export default {
     data(){
         return {
             modelo: '',
-            valor: '',
+            valor_automovel: '',
             depreciacao: '',
             formularios: []
         }
@@ -73,15 +71,15 @@ export default {
             axios.post('formulario',
             {
                 modelo: this.modelo,
+                valor_automovel: this.valor_automovel,
                 depreciacao: this.depreciacao,
-                usuario:{nome:this.usuario},
-                valor: this.valor
+                usuario:{nome:this.usuario}
             }
             )
             .then(res => {
                 console.log(res);
                 this.modelo = '';
-                this.valor = '';
+                this.valor_automovel = '';
                 this.depreciacao = '';
                 this.formularios.push(res.data);
             })

@@ -73,9 +73,9 @@ export default {
             axios.post('formulario',
             {
                 modelo: this.modelo,
-                valor: this.valor,
                 depreciacao: this.depreciacao,
-                usuario:{nome:this.usuario}
+                usuario:{nome:this.usuario},
+                valor: this.valor
             }
             )
             .then(res => {

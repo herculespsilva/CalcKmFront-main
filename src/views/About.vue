@@ -18,10 +18,8 @@
 </template>
 
 <script>
-
 import axios from 'axios';
 import { mapMutations } from 'vuex';
-
 export default {
   name: 'Home',
   data(){
@@ -36,15 +34,16 @@ export default {
       'setSenha'
     ]),
     login(){
-      axios.get('trabalho',
-      { params: { id: 1 }, headers: { Accept: 'application/json'}, auth: { username: this.nome, password: this.senha} })
+      axios.post('login',
+      { username: this.nome, password: this.senha} )
       .then(res => {
         console.log(res);
+        // localStorage.setItem('token',res.data.token);
         this.sucesso();
       })
       .catch(error => {
         console.log(error);
-        if (error.response.status === 401) {
+        if (error.response.status === 401 || error.response.status === 403) {
           console.log('Usuário ou senha inválidos');
         }
         else {

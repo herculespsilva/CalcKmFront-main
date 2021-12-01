@@ -3,16 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
-//import { config } from 'vue/types/umd'
 
-axios.defaults.baseURL = 'https://8080-sapphire-lobster-6tfatmab.ws-us20.gitpod.io/calculo_do_Km/'
+axios.defaults.baseURL = 'https://8080-salmon-wildfowl-1q6ae3na.ws-us20.gitpod.io/calculo_do_Km/';
 
-//'https://8080-red-catshark-41sm8v52.ws-us18.gitpod.io'
-
-/*axios.interceptors.request.use(config =>{
-  config.headers.Authorization = 'um token';
-  return config
-})*/
+// axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 Vue.config.productionTip = false
 

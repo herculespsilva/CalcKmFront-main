@@ -21,7 +21,12 @@
                 v-model="depreciacao">
             </p>
             <button type="submit">Salvar</button>
+            
         </form>
+
+      <div>
+        <button type="submit" @click="getFormInfo">Sincronizar</button>
+      </div>
 
         <br>
 
@@ -84,7 +89,18 @@ export default {
                 this.formularios.push(res.data);
             })
             .catch(error => console.log(error))
-        }
+        },
+        getFormInfo() {
+            axios.get("usuario/nome?nome=" + this.usuario, {
+                headers: { Accept: "application/json" }
+                })
+                .then((res) => {
+                    
+                this.formularios.push(res.data);
+                console.log(res);
+                })
+                .catch((error) => console.log(error));
+            }
     }
 }
 </script>

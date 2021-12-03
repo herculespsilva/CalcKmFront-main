@@ -20,6 +20,7 @@
 <script>
 import axios from 'axios';
 import { mapMutations } from 'vuex';
+import setAuthHeader from '../utils/HeaderAuth';
 export default {
   name: 'Home',
   data(){
@@ -38,7 +39,9 @@ export default {
       { username: this.nome, password: this.senha} )
       .then(res => {
         console.log(res);
-        // localStorage.setItem('token',res.data.token);
+        localStorage.setItem('jwtToken',res.data.token);
+        setAuthHeader(res.data.token);
+        localStorage.setItem('username',res.data.username);
         this.sucesso();
       })
       .catch(error => {

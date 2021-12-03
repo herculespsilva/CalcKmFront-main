@@ -2,9 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import axios from 'axios'
+import axios from "axios";
+import setAuthHeader from './utils/HeaderAuth';
 
-axios.defaults.baseURL = 'https://8080-salmon-wildfowl-1q6ae3na.ws-us20.gitpod.io/calculo_do_Km/';
+if(localStorage.jwtToken){
+  setAuthHeader(localStorage.jwtToken);
+}else{
+  setAuthHeader(false);
+}
+
+axios.defaults.baseURL = 'https://8080-crimson-gayal-oi144sam.ws-us21.gitpod.io/calculo_do_Km/';
 
 // axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
@@ -15,3 +22,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+

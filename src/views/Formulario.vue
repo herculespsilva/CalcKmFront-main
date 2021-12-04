@@ -27,6 +27,8 @@
       <div>
         <button type="submit" @click="getFormInfo">Sincronizar</button>
       </div>
+    
+        <br>
 
         <br>
 
@@ -48,6 +50,7 @@
             </tbody>
         </table>
     </div>
+
 </template>
 
 <script>
@@ -91,12 +94,12 @@ export default {
             .catch(error => console.log(error))
         },
         getFormInfo() {
-            axios.get("usuario/nome?nome=" + this.usuario, {
-                headers: { Accept: "application/json" }
+            axios.get("formulario/usuario?usuario=" + this.usuario, {
                 })
-                .then((res) => {
-                    
-                this.formularios.push(res.data);
+                .then((res) => {  
+
+                this.formularios=res.data.map(formularios => formularios);
+                
                 console.log(res);
                 })
                 .catch((error) => console.log(error));
@@ -104,3 +107,4 @@ export default {
     }
 }
 </script>
+

@@ -11,9 +11,7 @@ if(localStorage.jwtToken){
   setAuthHeader(false);
 }
 
-axios.defaults.baseURL = 'https://8080-crimson-gayal-oi144sam.ws-us21.gitpod.io/calculo_do_Km/';
-
-// axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+axios.defaults.baseURL = 'https://8080-fuchsia-marmoset-69inn2jp.ws-us21.gitpod.io/calculo_do_Km/';
 
 Vue.config.productionTip = false
 

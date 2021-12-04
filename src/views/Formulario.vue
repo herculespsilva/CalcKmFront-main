@@ -38,7 +38,7 @@
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
-                    <th>Usuario</th>
+                    <!--<th>Usuario</th>-->
                 </tr>
             </thead>
 

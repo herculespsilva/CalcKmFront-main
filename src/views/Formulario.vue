@@ -38,6 +38,7 @@
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
+                    <th>Usuario</th>
                 </tr>
             </thead>
 
@@ -46,6 +47,7 @@
                     <td>{{ form.modelo }}</td>
                     <td>{{ form.valor_automovel }}</td>
                     <td>{{ form.depreciacao }}</td>
+                    <!--<td>{{ form.usuario.nome }}</td>-->
                 </tr>
             </tbody>
         </table>
@@ -99,7 +101,7 @@ export default {
                 .then((res) => {  
 
                 this.formularios=res.data.map(formularios => formularios);
-                
+
                 console.log(res);
                 })
                 .catch((error) => console.log(error));

@@ -24,21 +24,18 @@
             
         </form>
 
-      <div>
-        <button type="submit" @click="getFormInfo">Sincronizar</button>
-      </div>
+        <div>
+            <button type="submit" @click="getFormInfo">Sincronizar</button>
+        </div>
     
         <br>
 
-        <br>
-
-        <table>
+        <table v-if="!this.verificaAdmin()">
             <thead>
                 <tr>
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
-                    <!--<th>Usuario</th>-->
                 </tr>
             </thead>
 
@@ -47,10 +44,32 @@
                     <td>{{ form.modelo }}</td>
                     <td>{{ form.valor_automovel }}</td>
                     <td>{{ form.depreciacao }}</td>
-                    <!--<td>{{ form.usuario.nome }}</td>-->
                 </tr>
             </tbody>
         </table>
+
+
+        <table v-if="this.verificaAdmin()">
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Valor</th>
+                    <th>Depreciacao</th>
+                    <th>Usuario</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="form in formularios" :key="form.id">
+                    <td>{{ form.modelo }}</td>
+                    <td>{{ form.valor_automovel }}</td>
+                    <td>{{ form.depreciacao }}</td>
+                    <td>{{ form.usuario.nome }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
     </div>
 
 </template>
@@ -95,8 +114,18 @@ export default {
             })
             .catch(error => console.log(error))
         },
+        verificaAdmin() {
+            if(localStorage.getItem('role') == '[ROLE_ADMIN]'){
+                console.log();
+                return true
+            }else{
+                console.log('Usuario não é admin');
+                return false
+            }
+        },
         getFormInfo() {
-            axios.get("formulario/usuario?usuario=" + this.usuario, {
+            if(this.verificaAdmin()){
+                axios.get("formulario", {
                 })
                 .then((res) => {  
 
@@ -106,7 +135,18 @@ export default {
                 })
                 .catch((error) => console.log(error));
             }
+            else {
+                axios.get("formulario/usuario?usuario=" + this.usuario, {
+                    })
+                    .then((res) => {  
+
+                    this.formularios=res.data.map(formularios => formularios);
+
+                    console.log(res);
+                    })
+                    .catch((error) => console.log(error));
+            }
+        }
     }
 }
 </script>
-

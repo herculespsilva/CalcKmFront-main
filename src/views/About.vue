@@ -42,6 +42,7 @@ export default {
         localStorage.setItem('jwtToken',res.data.token);
         setAuthHeader(res.data.token);
         localStorage.setItem('username',res.data.username);
+        localStorage.setItem('role',res.data.autorizacao);
         this.sucesso();
       })
       .catch(error => {

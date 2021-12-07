@@ -30,25 +30,6 @@
     
         <br>
 
-        <table v-if="!this.verificaAdmin()">
-            <thead>
-                <tr>
-                    <th>Modelo</th>
-                    <th>Valor</th>
-                    <th>Depreciacao</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr v-for="form in formularios" :key="form.id">
-                    <td>{{ form.modelo }}</td>
-                    <td>{{ form.valor_automovel }}</td>
-                    <td>{{ form.depreciacao }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-
         <table v-if="this.verificaAdmin()">
             <thead>
                 <tr>
@@ -69,6 +50,23 @@
             </tbody>
         </table>
 
+        <table v-else>
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Valor</th>
+                    <th>Depreciacao</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="form in formularios" :key="form.id">
+                    <td>{{ form.modelo }}</td>
+                    <td>{{ form.valor_automovel }}</td>
+                    <td>{{ form.depreciacao }}</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
@@ -116,10 +114,10 @@ export default {
         },
         verificaAdmin() {
             if(localStorage.getItem('role') == '[ROLE_ADMIN]'){
-                console.log();
+                console.log('Usuario é admin');
                 return true
             }else{
-                console.log('Usuario não é admin');
+                console.log('Usuario NÃO é admin');
                 return false
             }
         },

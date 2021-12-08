@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/CarroLogoPrincipal.png">
+    <HelloWorld msg="Seja bem vindo a Plataforma Cálculo do Km!"/>
   </div>
 </template>
 

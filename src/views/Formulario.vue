@@ -155,7 +155,7 @@ export default {
             axios.delete("formulario/delete/" + indice, {
                     })
                     .then((res) => { 
-
+                    this.getFormInfo();
                     console.log(res);
                     
                     })

@@ -33,6 +33,7 @@
         <table v-if="this.verificaAdmin()">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
@@ -42,10 +43,12 @@
 
             <tbody>
                 <tr v-for="form in formularios" :key="form.id">
+                    <td>{{ form.id }}</td>
                     <td>{{ form.modelo }}</td>
                     <td>{{ form.valor_automovel }}</td>
                     <td>{{ form.depreciacao }}</td>
                     <td>{{ form.usuario.nome }}</td>
+                    <button class="delete-btn" @click="deleteform(form.id)"> Deletar</button>
                 </tr>
             </tbody>
         </table>
@@ -53,6 +56,7 @@
         <table v-else>
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Modelo</th>
                     <th>Valor</th>
                     <th>Depreciacao</th>
@@ -61,9 +65,11 @@
 
             <tbody>
                 <tr v-for="form in formularios" :key="form.id">
+                    <td>{{ form.id }}</td>
                     <td>{{ form.modelo }}</td>
                     <td>{{ form.valor_automovel }}</td>
                     <td>{{ form.depreciacao }}</td>
+                    <button class="delete-btn" @click="deleteform(form.id)"> Deletar</button>
                 </tr>
             </tbody>
         </table>
@@ -144,6 +150,17 @@ export default {
                     })
                     .catch((error) => console.log(error));
             }
+        },
+        deleteform(indice){
+            axios.delete("formulario/delete/" + indice, {
+                    })
+                    .then((res) => { 
+
+                    console.log(res);
+                    
+                    })
+                    .catch((error) => console.log(error));
+             
         }
     }
 }
